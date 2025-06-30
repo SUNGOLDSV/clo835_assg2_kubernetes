@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+  namespace: webapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: employees
+  template:
+    metadata:
+      labels:
+        app: employees
+    spec:
+      containers:
+      - name: webapp
+        image: 726681933704.dkr.ecr.us-east-1.amazonaws.com/clo835-app-repo:4e60e9f
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DB_HOST
+          value: "mysql-service.mysql.svc.cluster.local" # DNS name for the MySQL service
+        - name: DB_PASSWORD
+          value: "definethis" # Same password as in the MySQL deployment
