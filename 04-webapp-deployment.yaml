@@ -20,7 +20,9 @@ spec:
         ports:
         - containerPort: 8080
         env:
-        - name: DB_HOST
+        - name: DBHOST
           value: "mysql-service.mysql.svc.cluster.local" # DNS name for the MySQL service
-        - name: DB_PASSWORD
+        - name: DBPWD
           value: "definethis" # Same password as in the MySQL deployment
+        - name: DBPORT
+          value: "3306"
